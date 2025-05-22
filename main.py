@@ -9,12 +9,14 @@ with open("cocopt.names", "r", encoding='utf-8') as f:
     class_names = [cname.strip() for cname in f.readlines()]
 
 cap = cv2.VideoCapture("animals.mp4")
+#cap = cv2.VideoCapture(0) - captura a camera
 
 net = cv2.dnn.readNet("yolov4-tiny.weights","yolov4-tiny.cfg")
 
 model = cv2.dnn_DetectionModel(net)
 
 model.setInputParams(size = (416,416), scale = 1/255)
+#model.setInputParams(size = (resolução da camera), scale = 1/255)
 
 while True:
     x, frame = cap.read()
